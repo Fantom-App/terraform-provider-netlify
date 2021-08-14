@@ -65,6 +65,11 @@ func resourceSite() *schema.Resource {
 							Optional: true,
 						},
 
+						"env": {
+							Type:     schema.TypeMap,
+							Optional: true,
+						},
+
 						"provider": {
 							Type:     schema.TypeString,
 							Required: true,
@@ -147,6 +152,7 @@ func resourceSiteRead(d *schema.ResourceData, metaRaw interface{}) error {
 			map[string]interface{}{
 				"command":       site.BuildSettings.Cmd,
 				"deploy_key_id": site.BuildSettings.DeployKeyID,
+				"env":           site.BuildSettings.Env,
 				"dir":           site.BuildSettings.Dir,
 				"provider":      site.BuildSettings.Provider,
 				"repo_path":     site.BuildSettings.RepoPath,
@@ -198,6 +204,7 @@ func resourceSite_setupStruct(d *schema.ResourceData) *models.SiteSetup {
 			Cmd:         repo["command"].(string),
 			DeployKeyID: repo["deploy_key_id"].(string),
 			Dir:         repo["dir"].(string),
+			Env:         repo["env"].(map[string]string),
 			Provider:    repo["provider"].(string),
 			RepoPath:    repo["repo_path"].(string),
 			RepoBranch:  repo["repo_branch"].(string),
