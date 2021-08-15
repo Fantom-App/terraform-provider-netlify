@@ -86,6 +86,10 @@ func resourceSite() *schema.Resource {
 							Type:     schema.TypeString,
 							Required: true,
 						},
+
+						"skip_prs": {
+							Type: schema.TypeBool,
+						},
 					},
 				},
 			},
@@ -159,6 +163,7 @@ func resourceSiteRead(d *schema.ResourceData, metaRaw interface{}) error {
 				"provider":      site.BuildSettings.Provider,
 				"repo_path":     site.BuildSettings.RepoPath,
 				"repo_branch":   site.BuildSettings.RepoBranch,
+				"skip_prs":      site.BuildSettings.SkipPRs,
 			},
 		})
 	}
@@ -219,6 +224,7 @@ func resourceSite_setupStruct(d *schema.ResourceData) *models.SiteSetup {
 			Provider:    repo["provider"].(string),
 			RepoPath:    repo["repo_path"].(string),
 			RepoBranch:  repo["repo_branch"].(string),
+			SkipPRs:     repo["skip_prs"].(bool),
 		}
 	}
 

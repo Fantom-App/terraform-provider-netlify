@@ -56,6 +56,9 @@ type RepoInfo struct {
 
 	// stop builds
 	StopBuilds bool `json:"stop_builds,omitempty"`
+
+	// skip prs
+	SkipPRs bool `json:"skip_prs,omitempty"`
 }
 
 // Validate validates this repo info
