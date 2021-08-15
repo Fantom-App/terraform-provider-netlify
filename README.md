@@ -1,5 +1,3 @@
-<!-- /archived-provider -->
-
 Terraform Provider
 ==================
 

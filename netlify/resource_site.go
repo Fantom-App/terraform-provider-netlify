@@ -200,11 +200,20 @@ func resourceSite_setupStruct(d *schema.ResourceData) *models.SiteSetup {
 		vL := v.([]interface{})
 		repo := vL[0].(map[string]interface{})
 
+		
+		env := make(map[string]string)
+		for key, value := range repo["env"] {
+			strKey := fmt.Sprintf("%v", key)
+			strValue := fmt.Sprintf("%v", value)
+	
+			env[strKey] = strValue
+		}
+
 		result.Repo = &models.RepoInfo{
 			Cmd:         repo["command"].(string),
 			DeployKeyID: repo["deploy_key_id"].(string),
 			Dir:         repo["dir"].(string),
-			Env:         repo["env"].(map[string]string),
+			Env:         env.(map[string]string),
 			Provider:    repo["provider"].(string),
 			RepoPath:    repo["repo_path"].(string),
 			RepoBranch:  repo["repo_branch"].(string),
