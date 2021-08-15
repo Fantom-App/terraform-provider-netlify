@@ -88,7 +88,8 @@ func resourceSite() *schema.Resource {
 						},
 
 						"skip_prs": {
-							Type: schema.TypeBool,
+							Type:     schema.TypeBool,
+							Optional: true,
 						},
 					},
 				},
