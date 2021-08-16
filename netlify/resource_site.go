@@ -46,6 +46,11 @@ func resourceSite() *schema.Resource {
 				Computed: true,
 			},
 
+			"password": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+
 			"repo": {
 				Type:     schema.TypeList,
 				MaxItems: 1,
@@ -152,6 +157,7 @@ func resourceSiteRead(d *schema.ResourceData, metaRaw interface{}) error {
 	d.Set("deploy_url", site.DeployURL)
 	d.Set("account_slug", site.AccountSlug)
 	d.Set("account_name", site.AccountName)
+	d.Set("password", site.Password)
 	d.Set("repo", nil)
 
 	if site.BuildSettings != nil && site.BuildSettings.RepoPath != "" {
