@@ -51,6 +51,16 @@ func resourceSite() *schema.Resource {
 				Optional: true,
 			},
 
+			"build_image": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+
+			"cdp_enabled": {
+				Type:     schema.TypeBool,
+				Optional: true,
+			},
+
 			"repo": {
 				Type:     schema.TypeList,
 				MaxItems: 1,
@@ -158,6 +168,8 @@ func resourceSiteRead(d *schema.ResourceData, metaRaw interface{}) error {
 	d.Set("account_slug", site.AccountSlug)
 	d.Set("account_name", site.AccountName)
 	d.Set("password", site.Password)
+	d.Set("build_image", site.BuildImage)
+	d.Set("cdp_enabled", site.CDPEnabled)
 	d.Set("repo", nil)
 
 	if site.BuildSettings != nil && site.BuildSettings.RepoPath != "" {
@@ -206,6 +218,12 @@ func resourceSite_setupStruct(d *schema.ResourceData) *models.SiteSetup {
 		Site: models.Site{
 			Name:         d.Get("name").(string),
 			CustomDomain: d.Get("custom_domain").(string),
+			DeployURL:    d.Get("deploy_url").(string),
+			AccountSlug:  d.Get("account_slug").(string),
+			AccountName:  d.Get("account_name").(string),
+			Password:     d.Get("password").(string),
+			BuildImage:   d.Get("build_image").(string),
+			CDPEnabled:   d.Get("cdp_enabled").(string),
 		},
 	}
 

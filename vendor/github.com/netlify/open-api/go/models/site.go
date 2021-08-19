@@ -34,6 +34,9 @@ type Site struct {
 	// capabilities
 	Capabilities map[string]interface{} `json:"capabilities,omitempty"`
 
+	// netlify drawer
+	CDPEnabled bool `json:"cdp_enabled,omitempty"`
+
 	// created at
 	CreatedAt string `json:"created_at,omitempty"`
 
