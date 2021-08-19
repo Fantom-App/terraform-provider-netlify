@@ -223,7 +223,7 @@ func resourceSite_setupStruct(d *schema.ResourceData) *models.SiteSetup {
 			AccountName:  d.Get("account_name").(string),
 			Password:     d.Get("password").(string),
 			BuildImage:   d.Get("build_image").(string),
-			CDPEnabled:   d.Get("cdp_enabled").(string),
+			CDPEnabled:   d.Get("cdp_enabled").(bool),
 		},
 	}
 
